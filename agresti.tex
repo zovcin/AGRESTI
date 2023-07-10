@@ -1,0 +1,925 @@
+\documentclass[twoside,titlepage,12pt,a4paper]{book}
+\usepackage{multicol,fancyhdr}
+\usepackage{times,mathpazo}
+%\usepackage{times,mathpazo,avant,chancery,charter}
+% \usepackage{mathptmx,times,mathpazo,helvet,charter}
+%\usepackage{times,mathptmx,helvet,charter}
+%\usepackage{cmbright}
+%\usepackage{ccfonts,eulervm}
+%\usepackage{mathpazo,helvet,charter}
+%\usepackage{libertine}
+%\usepackage[libertine]{newtxmath}
+%\usepackage{mathptmx,times,helvet}
+%\usepackage{lmodern}
+%\usepackage{mathpazo,avant,utopia,pifont}
+%\usepackage{mathptmx,utopia,helvet}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[serbian]{babel}
+\addto{\captionsserbian}{\renewcommand{\bibname}{Literatura}}
+%\addto{\captionsenglish}{\renewcommand{\bibname}{References}}
+\usepackage{epic}
+\usepackage[Algoritam,ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+%\usepackage{hyperref}
+\usepackage[usenames,dvips]{color}
+\usepackage[square,sort,comma,numbers]{natbib} %http://merkel.zoneo.net/Latex/natbib.php
+%\bibliographystyle{}
+% kpsewhich -var-value TEXMFHOME za ubacivanje MiKTeXa u texlive. Treba onda i linkovati MiKTeXov texmf
+% -Pdownload35 -Ppdf -G0 "%N.dvi"
+%%%mk4ht htlatex qwe.tex "xhtml,charset=utf-8,pmathml" " -cunihtf -utf8 -cvalidate"
+%
+% Teoreme, definicije i sl.
+%
+\usepackage{theorem}
+{\theorembodyfont{\it}
+ \newtheorem{defi}{\textsc{Definicija}}}
+{\theorembodyfont{\sl}
+ \newtheorem{teo}{\textsc{Teorema}}}
+{\theorembodyfont{\sl}
+ \newtheorem{lema}{\textsc{Lema}}}
+{\theorembodyfont{\rm}
+ \newtheorem{napomena}{\textsc{Napomena}}}
+{\theorembodyfont{\sl}
+ \newtheorem{primer}{\textsc{Primer}}}
+\def\qed{\hspace*{\fill}\mbox{$\rule{1ex}{1.5ex}$}}
+%
+% Za cirilicne reference
+%
+%\def\cyr{\fontencoding{OT2}\fontfamily{wncyr}\selectfont}
+%\def\cyr{\fontencoding{OT2}\fontfamily{cmr}\selectfont}
+%
+\usepackage{amsfonts}
+%
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Razmak izme\d{d}u pasusa
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\parskip 3 pt
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Debljina linije za crteže
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\setlength{\unitlength}{1mm}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  matematički operatori su još neki
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\def\tg{\mathop{\rm tg}\nolimits}
+\def\arctg{\mathop{\rm arctg}\nolimits}
+\def\var{\mathop{\rm var}\nolimits}
+\def\cov{\mathop{\rm cov}\nolimits}
+\def\Co{\textbf{C}}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Margine
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \setlength{\textwidth}{125.2mm}
+% \setlength{\textheight}{199.2mm}
+% \setlength{\oddsidemargin}{0mm}
+% \setlength{\evensidemargin}{34mm}
+% \setlength{\topmargin}{0mm}
+\usepackage[a4paper]{geometry}
+% \usepackage[cam,a4,pdftex,center]{crop}
+% \usepackage[a4,pdftex,center]{crop}
+\geometry{%
+  includeheadfoot,
+  margin=2cm
+}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Stil sa naslovom u hedingsima
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{\slshape #1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\slshape\thesubsection\ #1}}
+\renewcommand{\chaptermark}[1]{\markboth{\slshape #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\slshape\thesection\ #1}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\plainheadrulewidth}{0pt}
+\renewcommand{\plainfootrulewidth}{0pt}
+\lhead[\thepage]{\rightmark} \rhead[\leftmark]{\thepage}
+\cfoot[]{} \rfoot[]{} \addtolength{\headheight}{3pt}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Brojanje formula po sekcijama
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{chapter}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Brojanje formula po sekcijama
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\makeatletter
+%\renewcommand\theequation{\thesubsection.\arabic{equation}}
+%\@addtoreset{equation}{section}
+%\makeatother
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Podesavanje izgleda section i subsection naslova
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{sectsty}
+\chapterfont{\sffamily\bfseries\newpage\thispagestyle{plain}}
+\sectionfont{\sffamily\bfseries}
+\subsectionfont{\sffamily\bfseries}
+%
+\usepackage{url}
+%
+\usepackage{listings}
+\lstset{language=R}
+%
+\title{Složeni linearni modeli}
+%
+\author{Zoran Ovcin}
+%
+\date{Školska 2021/2022}
+%
+%  Početak dokumenta
+%
+\begin{document}
+%
+%   Ovo sto sledi dozvoljava da se vise floatova (slika i tabela) stavi
+%   na jednu stranu nego sto je default
+%
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}
+\setcounter{totalnumber}{50} \setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
+%
+% Ovde cu navesti reci koje LaTeX na zna da hifenizira
+%
+\hyphenation{a-pro-ksi-ma-ci-ja Ov-cin pro-ble-mi pro-ble-mi-ma}
+%
+%
+%
+%   NASLOV
+%
+%
+%   početak
+%
+%
+%\maketitle
+% \addcontentsline{toc}{chapter}{Uvod}
+\markboth{Uvod}{Uvod}
+\chapter{Uvod}
+
+Ponavljanje gradiva iz Verovatnoće, slučajnih promenljivih i statistike.
+
+% Ova skripta je namenjena studentima master akademskih studija 
+% Matematika u tehnici na Fakultetu tehničkih nauka Univerziteta
+% u Novom Sadu za predmet Složeni linearni modeli.
+
+% Preporučuje se i za predmet Analiza kategorijalnih podataka na
+% istom studijskom programu.
+
+% Kao predznanja za uspešno praćenje ovog predmeta su potrebne osnove
+% Matematičke analize i Algebre, Matričnog i vektorskog računa,
+% Verovatnoće, Slučajnih promenljivih, Statistike.
+
+% Takođe je potrebno poznavanje nekog statističkog softvera. U ovoj
+% skripti ćemo primere davati u softveru R.
+
+\section{Standardne oznake}
+
+U tekstu će se koristiti standardne matematičke oznake.
+Podsetićemo ovde na neke:
+\begin{itemize}
+\item $\N, \Z, \Q, \R, \C$ redom skup prirodnih, celih, racionalnih, realnih i kompleksnih brojeva
+\item $\R^+$ skup pozitivnih realnih brojeva
+\item $\R^{m\times n}$ matrice ${m\times n}$ realnih brojeva
+\item $( \Omega, {\cal F}, P )$ je oznaka za prostor verovatnoće
+nad nepraznim skupom događaja $\Omega$, gde je ${\cal F}$
+sigma-polje događaja i $P$ verovatnoća.
+\item Slučajne promenljive nad prostorom verovatnoće ćemo
+označavati velikim slovima abecede $X, Y, \ldots$ ili stavljati
+oznaku nad mala ili slova grčkog alfabeta na pr.\ $\hat{\alpha}$.
+\item Realizovane vrednosti slučajnih promenljivih ćemo obeležavati
+odgovarajućim malim slovima: Na primer: $y_1, y_2, \ldots$ su
+realizovane vrednosti slučajnih promenljivih  $Y_1, Y_2, \ldots$.
+\item Događaje u prostoru verovatnoće ćemo obeležavati $\displaystyle \{ w \in \Omega | Y ( w ) \le y \} = Y \le y$.
+\item Gustinu raspodele raspodele slučajne promenljive $Y$ ćemo, najčešće,
+obeležavati $f ( y )$, a Funkciju raspodele $F ( y ) = P ( \{ w \in \Omega | Y ( w ) \le y \} ) = P ( Y \le y )$.
+\item Očekivanje i varijansu slučajne promenljive $Y$ ćemo obeležavati redom $E ( Y )$
+i $\var\; ( Y ) $, a kovarijansu $Y_1$ i $Y_2$ sa $\cov ( Y_1, Y_2 ) = E ( ( Y_1 - E ( Y_1 ) ) \,  ( Y_2 - E ( Y_2 ) )$
+\end{itemize}
+
+
+\section{Prostor verovatnoće i slučajne promenljive}
+
+Neka je $\Omega$ neprazan skup, ${\cal F}$ neka je $\sigma$-polje događaja nad $\Omega$ i $P$ verovatnoća nad ${\cal F}$. Odnosno, neka je $( \Omega, {\cal} F, P )$ prostor verovatnoće.
+
+Preslikavanje $Y : \Omega \rightarrow \R$ je \textbf{slučajna promenljiva} ako za sve realne brojeve $y$ inverzna slika $Y \le y = Y^{-1} ( \; ( -\infty, y ] \, ) \in {\cal F}$.
+Svaka slučajna promenljiva ima \textbf{funkciju raspodele} $F ( y ) = P ( Y \le y )$. Više slučajnih promenljivih može da ima raspodelu sa funkcijom raspodele $F ( y )$.
+
+Ako raspodela zavisi od parametra ili parametara $\theta$, onda pišemo $F ( y, \theta ) = P ( Y \le y )$.
+
+\subsection{Diskretne raspodele}
+
+Ako je kodomen preslikavanja $Y$ najviše prebrojiv skup ${\cal R}_Y = \{ y_1, y_2, \ldots \} \subseteq \R$, onda preslikavanje koje vrednostima iz kodomena $y_i$ pridružuje verovatnoće $p_i = p ( y_i )$ nazivamo \textbf{zakon raspodele}, a za $Y$ kažemo da je \textbf{diskretna} slučajna promenljiva.
+
+\subsection{Apsolutno neprekidne raspodele}
+
+Ako za slučajnu promenljivu $Y$ postoji nenegativna integrabilna funkcija $f : \R \rightarrow [ 0, \infty )$ tako da je $\displaystyle F ( y ) = \int_{-\infty}^y f ( t ) \, dt$, kažemo da je $Y$ \textbf{(apsolutno) neprekidna} slučajna promenljiva, a funkciju $f$ zovemo \textbf{gustina raspodele}.
+
+\section{Važne raspodele}
+
+\subsection{Bernulijeva raspodela}
+
+Slučajna promenljiva $Y$ koja uzima samo vrednosti iz skupa $\{ 0, 1 \}$ kažemo da ima \textbf{Bernulijevu raspodelu} sa parametrom $p = P ( Y = 1 ) \in ( 0, 1 )$. Pišemo $Y \sim \;\mbox{Ber} ( p )$.
+
+Kažemo i da je $Y$ indikator događaja da je neki eksperiment uspeo, da je verovatnoća uspešnosti $p$, a nije uspeo sa verovatnoćom $P ( Y = 0 ) = 1 - p$.
+
+\subsection{Binomna raspodela}
+
+Slučajna promenljiva koja predstavlja broj uspešnih realizacija u $n$ nezavisnih pokušaja nekog eksperimenta čija je verovatnoća uspešnosti $p \in ( 0, 1 )$ kažemo da ima \textbf{Binomnu raspodelu}, pišemo $Y \sim B ( n, p )$.
+
+Svaki pokušaj eksperimenta ima Bernulijevu raspodelu: $Y_i \sim \;\mbox{Ber} ( p ), \: i = 1, 2, \ldots, n$ i važi $Y = \sum_{i=1}^n Y_i$.
+
+Zakon raspodele je \textbf{Bernulijeva shema}:
+$\displaystyle P( X = k ) =
+\left( \genfrac{}{}{0pt}{}{n}{k} \right) p^k \, (1 - p)^{n-k}$,
+$\displaystyle k \in \{ 0, 1, \ldots, n \}$.
+
+\subsection{Poasonova raspodela}
+
+Zakon \textbf{Poasonove raspodele} $Y \sim P ( \lambda )$, $\lambda > 0$:
+$\displaystyle P ( Y = k ) = \frac{\lambda^k}{k!} \, e^{-\lambda}$,
+$\displaystyle k = 0, 1, \ldots$
+
+\subsection{Geometrijska raspodela}
+
+\textbf{Geometrijska raspodela} sa parametrom $p \in ( 0, 1 )$ 
+u oznaci $Y \sim G ( p )$ ima zakon raspodele:
+$\displaystyle P ( Y = k ) = p \, ( 1 - p )^{k-1}$,
+$\displaystyle k = 1, 2, \ldots$ 
+
+Koristi se za modelovanje broja pokušaja do prve uspešne realizacije eksperimenta u nezavisnim ponavljanjima.
+
+\subsection{Normalna raspodela}
+
+Kažemo da slučajna promenljiva $Y$ ima \textbf{Normalnu ili Gausovu
+raspodelu}, zapisujemo  $Y \sim N ( \mu, \sigma^2 )$, ako je za $\mu \in \R$,
+$\sigma \in \R^+$  njena gustina raspodele
+\begin{equation}\label{eq:gauss}
+f ( y, \mu, \sigma ) = \frac{1}{\sqrt{2 \, \pi } \: \sigma} \:
+\exp \left( -\frac12 \left( \frac{y - \mu}{\sigma} \right)^2 \right).
+\end{equation}
+Ako $Y \sim N ( \mu, \sigma^2 )$, očekivanje i varijansa su
+$E ( Y ) = \mu$, $\var ( Y ) = \sigma^2$.
+
+Ako $Y \sim N ( \mu, \sigma^2 )$ onda 
+$\displaystyle Z = \frac{Y - \mu}{\sigma} \sim N ( 0, 1 )$
+(ima standardnu normalnu raspodelu).
+
+Ako su slučajne promenljive $Y_k$ nezavisne i
+$Y_k \sim N ( \mu_k, \sigma_k^2 )$, $k = 1, 2, \ldots, n$,
+onda
+$$Y = a_1 \, Y_1 + a_2 \, Y_2 + \cdots + a_n \, Y_n \sim N ( \mu, \sigma^2 ), \;\mbox{gde je}$$
+$$\mu = a_1 \, \mu_1 + a_2 \, \mu_2 + \cdots + a_n \, \mu_n \;\mbox{i}\;
+\sigma^2 = a_1^2 \, \sigma_1^2 + a_2^2 \, \sigma_2^2 +  \cdots + 
+a_n^2 \, \sigma_n^2.$$
+
+\subsection{Hi-kvadrat raspodela i Necentralna hi-kvadrat raspodela}
+
+Slučajna promenljiva $Y$ ima \textbf{Hi-kvadrat raspodelu sa $n$ stepeni
+slobode} ($n \in \N$) ako je njena gustina raspodele
+\(\displaystyle 
+f ( y, n ) =
+\frac{y^{n/2-1} \, e^{-y/2}}{2^{n/2} \, \Gamma (n / 2)},\: y > 0
+\).
+Pišemo \(Y \sim \chi^2 ( n ) \).
+Očekivanje (srednja vrednost) i varijansa su redom
+$E ( Y ) = n$, $\var ( Y ) = 2 n$.
+
+Ako $Z \sim N ( 0, 1 )$, onda $Y = Z^2 \sim \chi ( 1 )$.
+
+Ako nezavisne slučajne promenljive
+$Y_1 \sim \chi^2 ( n )$ i $Y_2 \sim \chi^2 ( m )$, onda
+$Y_1 + Y_2 \sim \chi^2 ( n + m )$.
+
+Ako nezavisne slučajne promenljive 
+$Z_k \sim N ( 0, 1 )$, $k = 1, 2, \ldots, n$, onda
+$\displaystyle \sum_{k = 1}^n Z_k^2 \sim \chi^2 ( n )$ i onda
+$\displaystyle Y = \sum_{k = 1}^n ( Z_k + \mu_k )^2 = \sum_{k = 1}^n Z_k^2 + 2 \sum_{k = 1}^n Z_k \, \mu_k + \sum_{k = 1}^n \mu_k^2 \sim \chi^2 ( n, \lambda )$ ima \textbf{Necentralnu hi-kvadrat raspodelu} sa $n$ stepeni slobode i parametrom necentralnosti $\lambda = \sum_{k = 1}^n \mu_k^2$.
+
+Kvantili necentralne $\chi^2 ( n, \lambda )$ raspodele su veći od kvantila centralne $\chi^2 ( n )$ raspodele. Pri tome je $E ( Y ) = n + \lambda$ i $\var ( Y ) = 2 n + 4 \lambda$.
+
+Ako nezavisne slučajne promenljive 
+$Y_k \sim \chi^2 ( n_k, \lambda_k )$, $k = 1, 2, \ldots, n$, onda
+$$\sum_{k = 1}^n Y_k \sim 
+\chi^2 \left( \sum_{k = 1}^n n_k, \sum_{k = 1}^n \lambda_k \right).$$ 
+
+\subsection{Studentova raspodela}
+
+Slučajna promenljiva $T$ ima \textbf{Studentovu raspodelu}, \(\displaystyle T \sim t ( n )\) sa $n$ stepeni slobode ako ima gustinu raspodele
+\[\displaystyle f ( t, n ) =
+\frac{\Gamma ( (n+1) / 2)}{\sqrt{n \pi} \;\; \Gamma ( n/2 ) \, 
+\left( 1 + t^2 / n \right)^{(n+1)/2}}, \: t \in \R.\]
+
+Drugi zapis: $\displaystyle
+f ( t, n ) = \left( \sqrt{n} \: B \left( \frac12, \frac{n}{2} \right) \,
+\left( 1 + \frac{t^2}{n} \right)^{(n+1)/2} \right)^{-1}$.
+
+Ako su $Z \sim N ( 0, 1 )$ i $Y \sim \chi_n^2$ nezavisne
+slučajne promenljive onda
+$\displaystyle T = \frac{Z}{\sqrt{\frac{Y}{n}}} \sim t ( n )$.
+
+\[E ( T ) = 0, \quad\quad \var ( T ) = \frac{n}{n -2},\; n > 2. \]
+
+\subsection{Fišerova raspodela}
+
+Slučajna promenljiva ima \textbf{Fišerovu raspodelu} sa $m$ i $n$ stepeni slobode $\displaystyle F \sim F ( m, n ),\; m, n \in \N$, ako ima gustinu\\
+$$f ( t, m, n ) = 
+\frac{\Gamma ( (m+n) / 2) \, m^{m/2} \, n^{n/2}}%
+{\Gamma ( m/2 ) \, \Gamma ( n / 2)} \cdot
+\frac{t^{m/2-1}}{( m t + n )^{(m+n)/2}}
+\;\mbox{za}\; t > 0.$$
+
+Ako \(\displaystyle F \sim F ( m, n )\), onda 
+$\displaystyle E ( F ) = \frac{m}{n - 2}, n > 2, \quad
+\var ( F ) = \frac{2 n^2 \, ( m + n - 2)}{m \, ( n - 2 )^2 \, ( n - 4 )}, n > 4$.
+
+Ako su $Y_1 \sim  \chi^2 ( m )$ i $Y_2 \sim \chi^2 ( n )$ nezavisne
+slučajne promenljive, onda
+\(\displaystyle F = \frac{\frac{Y_1}{m}}{\frac{Y_2}{n}} \sim F ( m, n )\).
+
+Ako $T \sim  t ( n )$ onda
+\(\displaystyle F = T^2 \sim F ( 1, n )\).
+
+Ako su $Y_1$ i $Y_2$ nezavisne slučajne promenljive i
+$Y_1 \sim \chi^2 ( m, \lambda )$ i $Y_2 \sim \chi^2 ( n )$,
+onda slučajna promenljiva
+\(\displaystyle
+F = \frac{Y_1 / m}{Y_2 / n} \sim F ( m, n, \lambda )\)
+ima \textbf{Necentralnu Fišerovu raspodelu}. Kvantili necentralne Fišerove
+raspodele su veći od kvantila centralne Fišerove raspodele.
+
+
+\section{Slučajni vektori}
+
+Ako su $Y_1$, $Y_2$, \ldots $Y_n$ slučajne promenljive, 
+sa $\mathbf{Y} = [ Y_1, Y_2, \ldots, Y_n ]^T$ obeležavamo
+\textbf{slučajni vektor} $\mathbf{Y}$.
+
+\textbf{Funkcija raspodele slučajnog vektora $\mathbf{Y}$} za $[ y_1, y_2, \ldots, y_n ]^T \in \R^{n\times1}$ je 
+\[
+F ( y_1, y_2, \ldots, y_n ) = P ( Y_1 \le y_1 \cap Y_2 \le y_2 \cap \cdots \cap Y_n \le y_n).
+\]
+
+Neprekidni slučajni vektori imaju \textbf{zajedničku gustinu raspodele}: nenegativnu integrabilnu funkciju $f : \R^n \rightarrow [ 0, \infty )$ koja zadovoljava
+\[
+F ( y_1, y_2, \ldots, y_n ) = \int_D  f ( x_1, x_2, \ldots, x_n) \: dx_1 dx_2 \cdots dx_n, \;\mbox{gde je}
+\]
+$\displaystyle D = ( -\infty, y_1 ] \times  ( -\infty, y_2 ] \times  \cdots \times  ( -\infty, y_n ]$.
+
+Raspodele komponenti slučajnog vektora $Y_i$ nazivamo \textbf{marginalne raspodele}.
+
+Očekivanje i varijansu slučajnog vektora definišemo
+$$E ( \mathbf{Y} ) = \left[
+\begin{array}{c}
+E ( Y_1) \\
+E ( Y_2) \\
+\vdots \\
+E ( Y_n) \\
+\end{array} \right] \;\mbox{i}\; 
+\var ( \mathbf{Y} ) = \left[
+\begin{array}{c}
+\var ( Y_1) \\
+\var ( Y_2) \\
+\vdots \\
+\var ( Y_n) \\
+\end{array} \right].$$
+
+Na osnovu osobina očekivanja i varijanse lako se vidi da je
+za konstantnu matricu $A$, $E(A) = A$,
+$\var(A) = \mathbf{0}$, $E ( A \, \mathbf{Y} ) = A \,
+E ( \mathbf{Y} )$.
+
+\textbf{Varijansno-kovarijansnu matricu} $\cov ( \mathbf{Y} )$ slučajnog vektora $\mathbf{y}$
+definišemo
+\[
+\cov ( \mathbf{Y} ) = \left[
+\begin{array}{cccc}
+\var ( Y_1 )      & \cov ( Y_1, Y_2 ) &        & \cov ( Y_1, Y_n )\\
+\cov ( Y_2, Y_1 ) & \var ( Y_2 )      &        & \cov ( Y_2, Y_n )\\
+                  &                   & \ddots &                  \\
+\cov ( Y_n, Y_1 ) & \cov ( Y_n, Y_2 ) &        & \var ( Y_n )     \\
+\end{array}
+\right].
+\]
+Poznato je $\cov ( Y_i, Y_i ) = \var ( Y_i )$ i 
+$\cov ( Y_i, Y_j ) = \cov ( Y_j, Y_i )$.
+Matrica $\cov ( \mathbf{Y} )$ je simetrična, odnosno
+$\cov ( \mathbf{Y} ) = \cov ( \mathbf{Y} )^T$.
+Za konstantnu matricu $A$ važi
+$\displaystyle \cov ( A \, \mathbf{Y} ) = A \, \cov ( \mathbf{Y} ) \, A^T$.
+
+\subsection{Višedimenzionalna normalna raspodela}
+
+Ako komponente slučajnog vektora $\mathbf{Y} = [ Y_1, Y_2, \ldots, Y_n ]^T$ imaju normalnu raspodelu, $Y_i \sim N ( \mu_i, \sigma_i^2 ), \: i = 1, 2, \ldots, n$, 
+kažemo da $\mathbf{Y}$ ima \textbf{Višedimenzionalnu normalnu raspodelu},
+$\mathbf{Y} \sim MVN ( \boldsymbol{\mu}, V )$, gde je $\boldsymbol{\mu} = [ \mu_1, \mu_2, \ldots, \mu_n ]^T$, $V = \cov ( \mathbf{y} )$.
+
+Ako $\mathbf{Y} \sim MVN ( \boldsymbol{\mu}, V )$ onda:
+\begin{itemize}
+\item Matrica $V$ je simetrična i pozitivno semidefinitna.
+\item U $i$-toj vrsti i $j$-toj koloni matrice $V$ je $\rho_{i,j} \, \sigma_i \, \sigma_j$, gde je $\rho_{i,j}$ \textbf{koeficijent korelacije} $Y_i$ i $Y_j$.
+\item Dijagonalni elementi matrice $V$ su $\sigma_i^2$.
+% \item Linearna kombinacija komponenti slučajnog vektora $\mathbf{Y}$ ima Normalnu raspodelu.
+\item Ako $V$ ima inverznu matricu $V^{-1}$ onda
+\[
+( \mathbf{Y} - \boldsymbol{\mu} )^T \, V^{-1} \, ( \mathbf{Y} - \boldsymbol{\mu} )
+\sim \chi^2 ( n ) \;\;\mbox{i}\;\;\;
+\mathbf{Y}^T \, V^{-1} \, \mathbf{Y} \sim \chi^2 ( n, \lambda ),
+\;\mbox{gde je}\; \lambda = \boldsymbol{\mu}^T \, V^{-1} \, \boldsymbol{\mu}.
+\]
+\item Ako $V$ ima inverznu matricu $V^{-1}$ onda je gustina slučajnog vektora $\mathbf{y}$:
+$$\displaystyle f ( y, \boldsymbol{\mu}, V ) =  \det(2 \, \pi \, V)^{-{\frac{1}{2}}} \, \exp\left(-{\frac{1}{2}}(y - \boldsymbol{\mu})^{T} \, V^{-1} \, (y - \boldsymbol{\mu})\right),$$
+za $y = [ y_1, y_2, \ldots, y_n ]^T$.
+\end{itemize}
+
+
+\chapter{Statističko zaključivanje}
+
+U ovom poglavlju ćemo dati neke pojmove, formule i teoreme iz Statistike. Preskočićemo oblasti deskriptivne statistike i ponoviti neke delove statističkog zaključivanja.
+
+\section{Statistika, osnovni pojmovi}
+
+\textbf{Populacija} je skup svih elemenata koje ispitujemo.
+\textbf{Obeležje} je numerička karakteristika elementa. Modeliramo
+ga slučajnom promenljivom.
+\textbf{Uzorak} je odabrani deo populacije na kojem ispitujemo
+realizovanu vrednost obeležja $X$.
+
+\textbf{Prost slučajni uzorak} ili, kraće, \textbf{uzorak}, je $n$-dimenzionalni slučajni vektor čije komponente su nezavisne i imaju raspodelu posmatranog obeležja $\mathbf{Y} = [ Y_1, Y_2, \ldots, Y_n ]^T$. 
+
+Komponente slučajnog vektora $\mathbf{Y}$ su IID = Independent, Identicaly Distributed (EN).
+
+\textbf{Realizovana vrednost prostog slučajnog uzorka} se obeležava malim slovima:\\[3pt]
+$[ Y_1, Y_2, \ldots, Y_n ]^T \rightarrow \mathbf{y} = [ y_1, y_2, \ldots, y_n ]^T$.
+
+\textbf{Statistika} je slučajna promenljiva koja nastaje kao funkcija uzorka.
+Realizovanu vrednost statistike obeležavamo odgovarajućim malim slovom.
+
+
+\section{Važne statistike uzorka $[Y_1, Y_2, \ldots, Y_n]^T$ obeležja $Y$}
+
+\subsection{Srednja vrednost uzorka}
+$\displaystyle \bar{Y}_n = \frac1n \sum_{k = 1}^n Y_k$
+
+\[
+E ( \bar{Y}_n ) = E ( Y ), \quad\quad
+\var ( \bar{Y}_n ) = \frac1n \, \var ( Y ).
+\]
+
+Ako $\displaystyle Y \sim N ( \mu, \sigma^2 ) \; \mbox{onda} \; \bar{Y}_n \sim N \left( \mu, \frac{\sigma^2}{n} \right)$ i $\displaystyle \sum_{k = 1}^n \left( \frac{Y_k - \mu}{\sigma} \right)^2 \sim \chi_n^2$.
+
+\subsection{Uzorački momenti}
+
+$\displaystyle M_r = \frac1n \sum_{k = 1}^n Y_k^r$, \textbf{momenat reda $r$}\\[3pt]
+\indent $\displaystyle \hat{\mu}_r = \frac1n \sum_{k = 1}^n ( Y_k - \bar{Y}_n )^r, \textbf{centralni momenat reda $r$}$.
+
+\subsection{Uzoračka varijansa}
+
+Centralni momenat reda dva
+$\displaystyle \hat{\mu}_2 = \frac1n \sum_{k = 1}^n ( Y_k - \bar{Y}_n )^2
+= \frac1n \sum_{k = 1}^n Y_k^2  - \bar{Y}_n^2 = M_2 - M_1^2$
+nije centriran već samo asimptotski centriran ocenjivač varijanse obeležja:
+\(\displaystyle
+E ( \hat{\mu}_2 ) = \frac{n - 1}{n} \, \var ( Y )
+\).
+Stoga \textbf{uzoračku varijansu} definišemo:
+$\displaystyle S^2 = \frac{n}{n - 1} \, \hat{\mu}_2 = \frac{1}{n - 1} \sum_{k = 1}^n ( Y_k - \bar{Y}_n )^2$, a \textbf{uzoračku standardnu devijaciju} $S = \sqrt{S^2}$.
+
+Ako $\displaystyle Y \sim N ( \mu, \sigma^2 )$ onda $\displaystyle \frac{( n - 1 ) \, S^2}{\sigma^2} = \sum_{k = 1}^n \left( \frac{Y_k - \bar{Y}_n}{\sigma} \right)^2 \sim \chi_{n - 1}^2$.
+
+
+\section{Tačkaste ocene parametara raspodele obeležja $Y$ za uzorak $[Y_1, Y_2, \ldots, Y_n]^T$}
+
+Raspodela obeležja zavisi od (nepoznatog) parametra $\theta$, koga ocenjujemo pomoću (realizovane vrednosti) uzorka.
+
+\textbf{Ocenjivač} neke funkcija parametra $\tau ( \theta )$ je statistika $\displaystyle U = u ( X_1, X_2, \ldots, X_n )$ čija realizovana vrednost (\textbf{ocena}) $\displaystyle u ( x_1, x_2, \ldots, x_n )$ je bliska $\tau ( \theta )$.
+
+Ocenjivač $U$ je \textbf{centriran} za $\tau ( \theta )$ ako 
+$\displaystyle E ( U ) = \tau ( \theta )$, odnosno, \textbf{asimptotski centriran} ako
+$\displaystyle \lim\limits_{n \rightarrow \infty} E ( U ) = \tau ( \theta )$.
+
+Ocenjivač $U$ je \textbf{postojan} za $\tau ( \theta )$ ako 
+$\displaystyle \lim\limits_{n \rightarrow \infty}
+P ( | \tau ( \theta ) - u ( X_1, X_2, \ldots, X_n ) | > \varepsilon ) = 0$
+za sve $\varepsilon > 0$.
+
+Koristeći nejednakost Čebiševa za centrirane ocenjivače sa konačnom varijansom se može pokazati da su postojani.
+
+\noindent\textbf{Srednja kvadratna greška} ocenjivača $U$ za $\tau ( \theta )$ je
+\mbox{$E ( ( U - \tau (\theta ) )^2 ) =
+D ( U ) + ( ( E ( U ) - \tau ( \theta ) )^2$.}
+
+Ako su $U_1$ i $U_2$ centrirani ocenjivači za $\tau ( \theta )$
+i $D ( U_1 ) < D ( U_2 )$, kažemo da je ocenjivač $U_1$
+\textbf{efikasniji} od $U_2$. Za obeležje i parametar postoji
+\textbf{najbolja} disperzija $\sigma_0^2$ koja se može postići.
+$\sigma_0^2$ se može oceniti koristeći nejednakost Rao-Kramer.
+
+\subsection{Metod momenata}
+
+Ovom metodom ocene parametara dobijamo iz jednačina u kojima izjednačavamo 
+uzoračke momenta sa momentima obeležja.
+
+Na primer, za Normalnu raspodelu $Y \sim N ( \mu, \sigma^2 )$, iz jednačina
+$E ( Y ) = M_1 = \bar{Y}_n$ i $\var Y = \hat{\mu}_2$, dobijamo
+$\mu = \bar{Y}_n = \frac1n \sum_{k=1}^n Y_k$ i $\sigma = \sqrt{\sigma^2} = \sqrt{\frac1n \sum_{k=1}^n ( Y_k - \bar{Y}_n )^2}$.
+
+
+\subsection{Metod maksimalne verodostojnosti}
+
+Ako je poznata raspodela obeležja $Y$ koja zavisi od nepoznatog parametra $\theta$ i ako je poznata realizovana vrednost uzorka $\mathbf{y}$, možemo potražiti vrednost paratetra $\theta$ za koju je dobijeni uzorak najverovatniji. Dobijena formula daje ocenjivač \textbf{maksimalne verodostojnosti} (MLE = Maximum Likelihood Estimate).
+
+Za ocenu parametra $\theta$ od koga zavisi gustina raspodele $f ( y, \theta )$ ili zakon raspodele $p_i = p ( y_i, \theta )$ uzima se vrednost $\theta = \theta ( y_1, y_2, \ldots, y_n )$ za koju se ostvaruje maksimum \textbf{funkcije verodostojnosti} koja se za realizovanu vrednost uzorka $( y_1, y_2, \ldots, y_n)$ računa:\\[3pt]
+\[
+L = L ( y_1, y_2, \ldots, y_n, \theta ) = 
+\left\{ 
+\begin{array}{rl}
+\varphi ( y_1, \theta ) \, \varphi ( y_2, \theta ) \, \ldots \, \varphi ( y_n, \theta ), & \mbox{za neprekidno}\\
+p ( y_1, \theta ) \, p ( y_2, \theta ) \, \ldots \, p ( y_n, \theta ), & \mbox{za diskretno obeležje.}
+\end{array}
+\right.
+\]
+
+Ovaj postupak se može primeniti i ako se ocenjuje više parametara, odnosno, ako je $\theta$ vektor nepoznatih parametara raspodele. U mnogim slučajevima ne postoji zatvorena formula koja daje ocenjivače, već se do ocene maksimalne verodostojnosti dolazi primenom postupaka nelinearne numeričke optimizacije.
+
+Na primer, ako za uzorak sa Normalnom raspodelom $Y \sim N ( \mu, \sigma^2 )$ primenjujemo MLE za ocenu parametara $\mu$ i $\sigma^2$, koristimo teoriju funkcija više promenljivih za nalaženje maksimuma funkcije dve promenljive.
+Dobijamo za ocenu $\mu$ i $\sigma^2$ iste formule kao metodom momenata:
+$\mu = \bar{Y}_n = \frac1n \sum_{k=1}^n Y_k$ i $\sigma^2 = \hat{\mu}_2 = \frac1n \sum_{k=1}^n ( Y_k - \bar{Y}_n )^2$.
+
+\section{Intervali poverenja za parametar raspodele obeležja $Y$}
+
+Koristimo uzorak $[Y_1, Y_2, \ldots, Y_n]^T$, odnosno, realizovanu vrednost $[y_1, y_2, \ldots, y_n]^T$.
+
+Za obeležje $Y$ čija je funkcija raspodele $F ( y, \theta )$, ako su $U_1 = u_1( Y_1, Y_2, \ldots, Y_n )$ i $U_2 = u_2( Y_1, Y_2, \ldots, Y_n )$ statistike za koje važi \(P ( U_1 < \theta < U_2 ) = \beta\), gde je $\beta \in ( 0, 1 )$ unapred zadat \textbf{nivo poverenja}, kažemo da je $(U_1, U_2)$ \textbf{interval poverenja} širine $\beta$ nepoznatog parametra $\theta$.
+
+\subsection{Za očekivanje $\mu$ obeležja $Y \sim N ( \mu, \sigma^2 )$}
+
+Neka su $\bar{Y}_n$ uzoračka srednja vrednost, $S^2$ uzoračka varijansa i $S = \sqrt{S^2}$.
+
+Onda $\displaystyle T = \frac{\bar{Y}_n - \mu}{S} \, \sqrt{n} \sim t_{n-1}$.
+
+Označimo $\left( \frac{1+\beta}{2} \right)$-kvantil raspodele $t_{n-1}$ sa $t_{(1+\beta)/2; n-1}$, t.j.\ \(\displaystyle P \left( \left| T \right| < t_{(1+\beta)/2; n - 1} \right) = \beta\). 
+
+Statistike $U_1, U_2$ su:
+$$ U_1 = \bar{Y}_n - t_{(1+\beta)/2; n - 1} \, \frac{S}{\sqrt{n}},\quad  U_2 = \bar{Y}_n + t_{(1+\beta)/2; n - 1} \, \frac{S}{\sqrt{n}}.$$
+
+Vrednost $\displaystyle \frac{S}{\sqrt{n}} = \frac{\sqrt{\hat{\mu}_2}}{\sqrt{n-1}}$ nazivamo \textbf{standardna greška} (SE, Standard Error, EN).
+
+
+\section{Statistički testovi}
+
+Statistički testovi su postupak statističkog zaključivanja u kome se na osnovu uzorka donosi zaključak o odbacivanju neke hipoteze $H_0$ (\textbf{nulta hipoteza}) o raspodeli obeležja. Pri odbacivanju se može pogrešiti, ali se verovatnoća greške ograničava \textbf{pragom značajnosti} $\alpha$.
+
+Nultoj hipotezi se suprotstavlja \textbf{alternativna hipoteza} $H_1$ koja je obično komplement (suprotna) od nulte hipoteze. Odbacivanje nulte hipoteze implicira usvajanje alternativne, pri čemu se takođe može pogrešiti.
+
+\begin{tabular}{l}
+Hipoteza $H_0$ protiv $H_1$\\[8pt]
+Tabela mogućih grešaka
+\end{tabular}
+\hfill
+\begin{tabular}{c|c|c}
+       &  Usvojena $H_0$ & Usvojena $H_1$ \\\hline
+Tačna $H_0$  &      OK         & Greška I vrste \\\hline
+Tačna $H_1$  & Greška II vrste &      OK        \\
+\end{tabular}\hfill\makebox{}\\
+
+Parametarski testovi se koriste u medicini i drugim naukama za testiranja "{}ispravnosti"{} uzorka. U tom kontekstu se greška prve vrste još zove \textbf{lažno pozitivan}, a greška druge vrste \textbf{lažno negativan} rezultat.
+
+Komplement verovatnoće greške druge vrste se zove \textbf{snaga testa}, odnosno, ako je $\beta$ verovanoća greške druge vrste, onda je $1 - \beta$ \textbf{snaga testa}.
+
+Snaga testa može da se oceni, a ocena raste sa veličinom uzorka. Često se za prag značajnosti uzima $\alpha = 5\%$, a za snagu testa zahteva da bude barem $\beta = 80\%$.
+
+\subsection{Parametarske hipoteze}
+
+Postupak testiranja parametarskih hipoteza:
+\begin{itemize}
+\item Zadaje se prag značajnosti $\alpha$ (recimo $\alpha = 5\% = 0.05$).
+\item Bira se parametar raspodele obeležja $\theta$ i ocenjivač $\hat{\theta}$ za uzorak $[Y_1, Y_2, \ldots, Y_n]^T$.
+\item Nalazi se kritična oblast $C$ parametra, takva da je $P_{{H_0}} ( \hat{\theta} \in C ) = \alpha$. $C$ sadrži vrednosti ocene čija je verovatnoća mala, ukupno manja od $\alpha$, ako je $H_0$ tačna. (Vrednosti za koje mislimo da nisu plod slučajnosti.)
+\item Za realizovanu vrednost uzorka se računa statistika $\theta$ i ako $\theta \in C$, odbacujemo $H_0$ (i usvajamo $H_1$).
+\item Poželjno je izračunati p-vrednost (p-value, EN) $\alpha^*$ kao verovatnoću da se za ocenu dobije izračunata vrednost ili još ekstremnija.
+\end{itemize}
+
+
+\newpage
+\subsubsection{Testiranje $H_0 ( \mu = \mu_0 )$ protiv $H_1 ( \mu \neq \mu_0 )$ za obeležje $Y \sim N ( \mu, \sigma^2 )$}
+
+\begin{multicols}{2}
+Statistika koja se koristi
+\[\displaystyle T := \frac{\bar{Y}_n - \mu_0}{S}{\sqrt{n}}  \sim t_{n-1}, \]
+ima Studentovu raspodelu sa $n-1$ step.\ slob.\ (gde je $S^2$ uzoračka varijansa i $S = \sqrt{S^2}$).
+
+Ako je $H_0$ tačna, očekivana vrednost $E ( T ) = 0$, za kritičnu oblast uzimamo vrednosti van intervala $( -t_{1-\alpha/2;n-1}, t_{1-\alpha/2;n-1} )$, gde je 
+$P ( | T | < t_{1-\alpha/2;n-1} ) = 1 - \alpha$.
+%$ =  P ( -t_{1-\alpha/2;n-1} < T < t_{1-\alpha/2;n-1} )$
+
+\begin{picture}(80,50)
+\put(-5,-4){\includegraphics[width=.52\textwidth]{plot_pdf_x_absle_200.pdf}}
+\put(13,44){\makebox(0,0)[tl]{Gustina raspodele statistike $T$}}
+%\put(13,46){\makebox(0,0)[tl]{$1 - \alpha = P ( | T | < t_{1-\alpha/2;n-1} ) =$}}
+%\put(11,40){\makebox(0,0)[tl]{$= P ( -t_{1-\alpha/2;n-1} < T < t_{1-\alpha/2;n-1} )$}}
+\put(14,17){\makebox(0,0)[tl]{$\frac{\alpha}{2}$}}
+\put(66,17){\makebox(0,0)[tl]{$\frac{\alpha}{2}$}}
+\put(35,21){\makebox(0,0)[tl]{$1 - \alpha$}}
+\put(15,7){\makebox(0,0)[tl]{$-t_{1-\alpha/2;n-1}$}}
+\put(55,7){\makebox(0,0)[tl]{$t_{1-\alpha/2;n-1}$}}
+\end{picture}
+\end{multicols}
+
+Iskaz da realizovana vrednost statistike $T$ upada u kritičnu oblast je ekvivalentan iskazu da $\mu_0$ ne pripada intervalu poverenja za $\mu$ širine $\beta = 1 - \alpha$.
+Važi $(1+\beta)/2 = 1 - \alpha/2$.
+\[
+\mu_0 \in \R \left\backslash
+\left( \bar{y}_n \mp t_{(1+\beta)/2;n-1} \, \frac{S}{\sqrt{n}} \right)\right.
+\;\Leftrightarrow\;
+t := \frac{| \bar{y}_n - \mu_0 |}{S}{\sqrt{n}} > t_{1 - \alpha/2;n-1}
+\;\Leftrightarrow\;
+\alpha^* < \alpha,
+\]
+gde je $\alpha^*$ p-vrednost:
+\[
+\alpha^* :=  P_{H_0} \left( | T | >
+\frac{| \bar{y}_n - \mu_0 |}{S}{\sqrt{n}}  \right).
+\]
+
+\subsubsection*{Jednostrani testovi - Alternativna hipoteza je $H_1 ( \mu < \mu_0 )$ ili
+$H_1 ( \mu > \mu_0 )$ }
+
+\begin{multicols}{2}
+
+
+Ako je $H_0$ tačna i iz prirode obeležja se zna da srednja vrednost ne može biti manja od $\mu_0$, alternativna hipoteza je $H_1 ( \mu > \mu_0 )$.
+
+Kritična oblast za realizovanu vrednost statistike $t := \frac{\bar{y}_n - \mu_0}{S}{\sqrt{n}}$ je $C = ( t_{1- \alpha;n-1} , \infty  )$, gde je $t_{1- \alpha;n-1}$ kvantil $1-\alpha$ raspodele $t_{n-1}$.
+
+P-vrednost je \(\alpha^* :=  P_{H_0} ( T > t )\).
+
+Važi i $\displaystyle t \in C \;\Leftrightarrow\; \alpha^* < \alpha$.
+
+Analogno se testira za $H_1 ( \mu < \mu_0 )$.
+
+\begin{picture}(80,50)
+\put(-5,-4){\includegraphics[width=.52\textwidth]{plot_pdf_x_ge_100.pdf}}
+\put(27,44){\makebox(0,0)[tl]{$H_1 ( \mu > \mu_0 )$}}
+\put(63,18){\makebox(0,0)[tl]{$\alpha$}}
+\put(34,21){\makebox(0,0)[tl]{$1 - \alpha$}}
+\put(47,7){\makebox(0,0)[tl]{$t_{1-\alpha;n-1}$}}
+\end{picture}
+\end{multicols}
+
+\subsection{Testiranje jednakost srednjih vrednosti dva uzorka sa Normalnom raspodelom, T-test}
+
+Pretpostavimo da su $Y^1 \sim N ( \mu_1, \sigma_1^2 ) \;\mbox{i}\; Y^2 \sim N ( \mu_2, \sigma_2^2 )$ posmatrana obeležja.
+
+Neka su uzorci posmatranih obeležja redom $[ Y_1^1, Y_2^1, \ldots, Y_{n_1}^1 ]^T$ i $[ Y_1^2, Y_2^2, \ldots, Y_{n_2}^2 ]^T$.
+
+Ovo je takozvani \textbf{T-test}, često korišten statistički test. Testira se nulta hipoteza da su srednje vrednosti obeležja u dva uzorka jednake, $H_0 ( \mu_1 = \mu_2 )$.
+
+Alternativna hipoteza je $H_1 ( \mu_1 \neq \mu_2 )$, a mogu biti, kao sa jednim uzorkom, jednostrane alternativne hipoteze: $H_1 ( \mu_1 > \mu_2 )$ ili $H_1 ( \mu_1 < \mu_2 )$
+
+Pod pretpostavkom da su varijanse uzoraka jednake: $\sigma_1^2 = \sigma_2^2$, koristimo statistiku
+\[
+T := \left. \left( \bar{Y}_{n_1}^1 - \bar{Y}_{n_2}^2 - \mu_1 + \mu_2 \right) \middle/ \sqrt{S^2 \left( \frac{1}{n_1} + \frac{1}{n_2} \right) } \right., \;\mbox{gde su}\;
+\bar{Y}_{n_1}^1 = \frac1n \sum_{k=1}^{n_1} Y_k^1,\: \bar{Y}_{n_2}^2 = \frac1n \sum_{k=1}^{n_2} Y_k^2 \;\;\mbox{i} 
+\]
+\[ S^2 = \left. \left( \sum_{k=1}^{n_1} ( Y_k^1 - \bar{Y}_{n_1}^1 )^2 + \sum_{k=1}^{n_2} ( Y_k^2 - \bar{Y}_{n_2}^2 )^2 \right) \middle/ ( n_1 + n_2 - 2) \right..
+\]
+Statistika $T$ ima Studentovu raspodelu sa $n_1 + n_2 - 2$ stepeni slobode $t_{n_1+n_2-2}$.
+
+Ako postoji značajna razlika varijansi dva uzorka, koristimo statistiku
+\[
+T := \left. \left( \bar{Y}_{n_1}^1 - \bar{Y}_{n_2}^2 - \mu_1 + \mu_2 \right) \middle/ \sqrt{\frac{\bar{S}_1^{2}}{n_1} + \frac{\bar{S}_2^{2}}{n_2}} \right., \;\mbox{gde su}\;
+\bar{S}_1^{2} \;\mbox{i}\; \bar{S}_2^{2} \;\mbox{redom uzoračke varijanse.}
+\]
+Statistika $T$ približno približno ima Studentovu raspodelu $t_{\nu}$ gde se za ${\nu}$ uzima procena Welcha:
+\[\nu := \frac{\left( \frac{\bar{s}_1^{2}}{n_1} + \frac{\bar{s}_2^{2}}{n_2} \right)^2}{\frac{1}{n_1 - 1} \left( \frac{\bar{s}_1^{2}}{n_1} \right)^2 + \frac{1}{n_2 - 1} \left( \frac{\bar{s}_2^{2}}{n_2} \right)^2}, \;\;\mbox{računata sa realizovanim vrednostima varijansi.}\]
+Pod pretpostavkom da je $H_0$ tačna, kao i kod testova sa jednim uzorkom, koristimo kvantile odgovarajuće Studentove raspodele za nalaženje kritične oblasti.
+
+\subsubsection{T-test parova}
+
+\textbf{T-test parova} se koristi kad imamo dva obeležja čije su vrednosti uparene kao da su uzimane "{}pre"{} i "{}posle"{} nekog tretmana. Neka su to redom realizovane vrednosti $[ y_1^1, y_2^1, \ldots, y_{n}^1 ]^T$ i $[ y_1^2, y_2^2, \ldots, y_{n}^2 ]^T$. Uzorci mogu biti određeni diskretnim atributom koji ima binarnu vrednost.
+
+Test jednakosti srednjih vednosti se svodi na kreiranje uzorka razlika i testiranje da li je njegova srednja vrednost jednaka nuli.
+
+Računamo $t_1 = y_1^1 - y_1^2$, $t_2 = y_2^1 - y_2^2$, $\ldots$, $t_n = y_n^1 - y_n^2$ i testiramo $H_0 ( \mu = 0 )$ protiv $H_1 ( \mu \neq 0 )$ ili $H_1 ( \mu < 0 )$ ili $H_1 ( \mu > 0 )$, za realizovani uzorak $[ t_1, t_2, \ldots, t_n ]^T$.
+
+\subsection{Statistički softver R i komanda \texttt{t.test}}
+
+Svi do sad pomenuti parametarski testovi i intervali poverenja su u softveru R objedinjeni u komandu \texttt{t.test}.
+
+Na primer:
+\begin{itemize}
+\item
+Testiranje jednakosti srednjih vrednosti dva uzorka sa nejednakim varijansama koji su smešteni u promenljive \texttt{y1} i \texttt{y2} (uz procenu Welcha za $\nu$) se vrši komandom:\\[2pt]
+\texttt{t.test(y1, y2)}
+\item
+Ako želimo da postavimo alternativnu hipotezu $H_1 ( y_1 > y_2 )$, dodajemo \texttt{alternative = c("greater")} kao opciju, (za obrnuto \texttt{alternative = c("less")}):\\[2pt]
+\texttt{t.test(y1, y2, alternative = c("greater"))}
+\item
+Ako smatramo da su varijanse uzoraka jednake, dodajemo opciju \texttt{var.equal = TRUE}:\\[2pt]
+\texttt{t.test(y1, y2, var.equal = TRUE)}
+\item
+Ako su uzorci uparenih vrednosti, za t-test parova dodajemo opciju \texttt{paired = TRUE}:\\[2pt]
+\texttt{t.test(y1, y2, paired = TRUE)}
+\item
+Za testiranje srednje vrednosti jednog uzorka se zadaje \texttt{broj} za vrednost $\mu_0$ opcijom \texttt{mu = broj}:\\[2pt]
+\texttt{t.test(y1, mu = broj)}
+\item
+Softver će vratiti p-vrednost \texttt{p.value}, vrednost $t$ statistike \texttt{statistic}, $95\%$ interval poverenja koji odgovara pragu značajnosti $\alpha = 0.05 = 5\%$ i ostale podatke vezane za testiranje.
+\item
+Ako, na primer, za testiranje srednje vrednosti jednog uzorka želimo umesto $95\%$ neki drugi nivo poverenja \texttt{nivo}, zadajemo opciju \texttt{conf.level = nivo}:\\[2pt]
+\texttt{t.test(y1, mu = broj, conf.level = nivo)}
+\end{itemize}
+\end{document}
+
+
+% \subsection{Testiranje jednakosti proporcija za dva uzorka}
+
+% % Da li veruju u zagrobni život? Pitali su 684 žena, 550 odgovorilo sa DA i 563 muškarca, 425 odgovorilo sa DA. Testirati hipotezu da su proporcije jednake.
+
+% $H_0 ( p_1 = p_2 )$ protiv $H_1 ( p_1 \neq p_2 )$
+
+% Pretpostavljamo da broj pozitivnih odgovora žena ima
+% $X_1 : {\cal B} ( n_1, p_1 )$
+% a muškaraca $X_2 : {\cal B} ( n_2, p_2 )$.
+
+% Neka $\hat{p} = \frac{X_1 + X_2}{n_1 + n_2}$, onda statistika
+% $\displaystyle Z = \frac{\hat{p}_1 - \hat{p}_2}%
+% {\sqrt{\hat{p} \, ( 1 - \hat{p} ) \, ( 1 / n_1 + 1 / n_2 )}}$,\\
+% ako je tačna Nulta hipoteza, ima približno Normalnu
+% ${\cal N} ( 0, 1 )$ raspodelu.
+
+
+% \subsection{Neparametarski testovi
+% $H_0 ( F ( x ) = F_0 ( x ) )$
+% protiv $H_1 ( F ( x ) \neq F_0 ( x ) )$}
+
+% \subsubsection{$\chi^2$ test}
+
+% Uzorak se grupiše u intervale  $I_i$, sa deobenim tačkama $m_i$,
+% $i = 0, 1, \ldots k$ i brojem elemenata uzorka u intervalu $i$
+% jednak $f_i$, $i = 1, 2, \ldots k$. (Treba $f_i \ge 5$.)
+
+% Može se pokazati da se za dovoljno veliki obim uzorka $n$,
+% raspodela statistike 
+% \[
+% Y = \sum\limits_{i = 1}^k \frac{( F_i - n \, p_i )^2}{n \, p_i},
+% \;\mbox{ gde je }\; p_i = P ( m_{i-1} < X \le m_i ),\:
+% f_i \;\mbox{ realizovana vrednost }\; F_i,
+% \]
+% može aproksimirati $\chi^2_{k - 1}$ raspodelom. Ako se ocenjuje
+% $s$ parametara, onda $\chi^2_{k - 1 - s}$.
+
+% Ako realizovana vrednost statistike $y > y_{1 - \alpha}$,
+% gde je $y_{1 - \alpha}$ kvantil $\chi^2$ raspodele
+% sa $k - 1 - s$ stepeni slobode, $s =$ broj ocenjivanih parametara,
+% odbacujemo nultu hoipotezu $H_0$.
+
+% \subsubsection{Tabela kontigencije}
+
+% $\chi^2$-test nezavisnosti obeležja. Obeležje $X$ uzima 
+% $m$ mogućih vrednosti, $Y$ uzima $n$ mogućih vrednosti.
+
+% Formira se tabela $m \times n$ verovatnoća izračunatih preko
+% marginalnih verovatnoća $p_{i,j} = p_{i \cdot} \, p_{\cdot j}$,
+% koje se dobijaju koristeći marginalne frekvencije.
+
+% Statistika $\displaystyle Y = \sum\limits_{i, j} 
+% \frac{( F_{i,j} - n \, p_{i \cdot} \, p_{\cdot j} )^2}%
+% {n \, p_{i \cdot} \, p_{\cdot j}}$
+% ima približno $\chi^2$ raspodelu sa $(m - 1) \, (n-1)$ stepeni
+% slobode.
+
+% \begin{primer}
+% U tabeli su dati brojevi studenata koji su položili i pali
+% kolokvijum kod tri asistenta. Testirati hipotezu da su
+% procenti položenih nezavisni od asistenta.\\[4pt]
+% \centerline{\begin{tabular}{c|c|c|c|c}
+%       & X   &  Y    &  Z  & \\\hline
+% pali  & 50  &  47   & 56  & 153 \\
+% položili & 5 & 14 & 8 & 27 \\\hline
+% ukupno & 55 & 61 & 64 \\
+% \end{tabular}}
+% \end{primer}
+
+% \begin{small}
+% \begin{lstlisting}[frame=single]
+% chisq.test(matrix(c(50,5,47,14,56,8), ncol = 3))  # p-value = 0.08873
+% \end{lstlisting}
+% \end{small}
+% \newpage
+% \subsubsection*{Test Kolmogorov-Smirnov}
+
+% Primenjujemo ga za poznatu neprekidnu raspodelu
+
+% Statistika koju koristimo je
+% \[
+% D_n = \sup\limits_x | F_n^* ( x ) - F ( x ) |, \;\mbox{ važi }\;
+% P ( \sqrt{n} \, D_n \le \lambda ) \rightarrow D ( \lambda ),
+% \;\mbox{ za } n \rightarrow \infty,
+% \;\mbox{ gde je}
+% \]
+% $D ( \lambda )$ funkcija raspodele Kolmogorov-Smirnov
+% čiji kvantili su $\lambda_{0.95} = 1.36$ i $\lambda_{0.99} = 1.63$.
+
+% \begin{primer}
+% Za 100 brojeva generisanih pseudo-slučajnim generatorom u
+% intervalu $( 0, 1 )$ testirati da li su uniformno raspoređeni
+% testom Kolmogorov-Smirnov sa pragom značajnosti $\alpha = 0.05$.
+% Ponoviti testiranje 5000 puta. Proveriti u kojem procentu
+% slučajeva hipoteza biva odbačena.
+% \end{primer}
+
+% \begin{small}
+% \begin{lstlisting}[frame=single]
+% set.seed(12345); n<-5000; s<-numeric(n);
+% for(k in 1:n){s[k]<-ks.test(runif(100),'punif')$p.value};
+% sum(s<.05)/n
+% \end{lstlisting}
+% \end{small}
+
+% \texttt{0.0436}
+
+
+\chapter{Normalni linearni modeli}
+
+Neka su $Y_1, Y_2, \ldots, Y_N$ nezavisne slučajne promenljive sa istom varijansom:
+\begin{equation}\label{eq:linmodel}
+E ( Y_i ) = \mu_i = \mathbf{X}_i^T \, \boldsymbol{\beta}, \;
+Y_i \sim N ( \mu_i, \sigma^2 ),\: i = 1, 2, \ldots, N.
+\end{equation}
+U matričnom obliku zapis je
+\begin{equation}\label{eq:linmodelmatr}
+\mathbf{y} = \mathbf{X} \, \boldsymbol{\beta} + \mathbf{e},
+\;\mbox{gde je}
+\end{equation}
+\[
+\mathbf{y} = 
+\begin{bmatrix}
+Y_1 \\ \vdots \\ Y_N
+\end{bmatrix}, \;
+\mathbf{X} = 
+\begin{bmatrix}
+\mathbf{x}_1^T \\ \vdots \\ \mathbf{x}_N^T
+\end{bmatrix}, \;
+\boldsymbol{\beta} = 
+\begin{bmatrix}
+\beta_1 \\ \vdots \\ \beta_p
+\end{bmatrix}, \;
+\mathbf{e} = 
+\begin{bmatrix}
+e_1 \\ \vdots \\ e_N
+\end{bmatrix}.
+\]
+
+
+\chapter{Logistička regresija}
+
+
+
+\end{document}
